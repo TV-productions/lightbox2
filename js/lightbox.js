@@ -327,7 +327,13 @@
           .html(this.album[this.currentImageIndex].title)
           .fadeIn('fast')
           .find('a').on('click', function(event){
-            location.href = $(this).attr('href');
+            var $this = $(this);
+            if ($this.attr('target') == '_blank') {
+              var win = window.open($this.attr('href'), '_blank');
+              win.focus();
+            } else {
+              location.href = $this.attr('href');
+            }
           });
       }
     
